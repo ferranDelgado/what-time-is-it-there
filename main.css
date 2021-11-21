@@ -1,0 +1,39 @@
+body {
+    min-width: 600px;
+}
+
+.timeline {
+    width: 100%;
+}
+
+.timeline-row {
+    display: flex;
+    width: 100%;
+}
+
+.timeline-row-unit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 20%;
+    height: 25px;
+    padding: 1px;
+    border: 1px;
+    border-style: solid;
+    border-color: white;
+}
+
+.timeline-row-unit-working-hour {
+    background-color: #FF9AA2;
+}
+
+.timeline-row-unit-not-working-hour {
+    background-color: #E2F0CB;
+}
+
+.timeline-row-name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 10%;
+}

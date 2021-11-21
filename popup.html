@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="button.css">
-  </head>
-  <body>
-    <button id="changeColor"></button>
-    <script src="popup.js"></script>
-  </body>
+
+<head>
+  <link rel="stylesheet" href="button.css">
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+  <button id="create-btn"></button>
+  <button id="changeColor"></button>
+  <section style="display:flex">
+    <div
+      style="display:flex; flex-direction:column; justify-content: center; color: red; width: 20%; height: 25px;background-color: blue;">
+      hello</div>
+    <div
+      style="display:flex; flex-direction:column; justify-content: center; color: red; width: 20%; height: 25px;background-color: green;">
+      hello</div>
+  </section>
+  <section id="main-timeline" class="timeline">
+    <section class="timeline-row" style="background-color: yellow;"> 
+      <div class="timeline-row-unit" style="background-color: blue;"></div>
+      <div class="timeline-row-unit" style="background-color: green;"></div>
+    </section>
+  </section>
+  <script src="popup.js"></script>
+  <script src="watch.js"></script>
+  <script src="timeline.js"></script>
+</body>
+
 </html>
