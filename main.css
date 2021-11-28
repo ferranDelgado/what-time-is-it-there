@@ -31,7 +31,18 @@ body {
     background-color: #E2F0CB;
 }
 
+.timeline-row-unit-current-hour {
+    border-color: grey;
+}
+
 .timeline-row-name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 10%;
+}
+
+.timeline-row-hour {
     display: flex;
     flex-direction: column;
     justify-content: center;

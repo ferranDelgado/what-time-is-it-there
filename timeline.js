@@ -13,9 +13,13 @@ function createHeader() {
     const timeline_row = document.createElement("div")
     timeline_row.classList.add("timeline-row")
     
-    const unit = document.createElement("div")
-    unit.classList.add("timeline-row-name")
-    timeline_row.append(unit)
+    const nameRow = document.createElement("div")
+    nameRow.classList.add("timeline-row-name")
+    timeline_row.append(nameRow)
+
+    const timeRow = document.createElement("div")
+    timeRow.classList.add("timeline-row-name")
+    timeline_row.append(timeRow)
     
     for (let i = 0; i < 24; i++) {
         const unit = document.createElement("div")
@@ -30,10 +34,15 @@ function createRow(schedule) {
     const timeline_row = document.createElement("div")
     timeline_row.classList.add("timeline-row")
     
-    const unit = document.createElement("div")
-    unit.classList.add("timeline-row-name")
-    unit.innerHTML = "" + schedule["name"]
-    timeline_row.append(unit)
+    const nameElement = document.createElement("div")
+    nameElement.classList.add("timeline-row-name")
+    nameElement.innerHTML = "" + schedule["name"]
+    timeline_row.append(nameElement)
+    
+    const hourElement = document.createElement("div")
+    hourElement.classList.add("timeline-row-hour")
+    hourElement.dataset.offset = schedule["offsetHours"]
+    timeline_row.append(hourElement)
     
     for (let i = 0; i < 24; i++) {
         const unit = document.createElement("div")
@@ -41,6 +50,9 @@ function createRow(schedule) {
             unit.classList.add("timeline-row-unit-working-hour")
         } else {
             unit.classList.add("timeline-row-unit-not-working-hour")
+        }
+        if(i === (new Date().getHours())) {
+            unit.classList.add("timeline-row-unit-current-hour")
         }
         unit.classList.add("timeline-row-unit")
         timeline_row.append(unit)
@@ -71,13 +83,20 @@ function getSchedules() {
             name: "Reem",
             from: 8,
             to: 18,
-            offsetHours: -5
+            offsetHours: +9
         },
         {
             name: "UK",
             from: 8,
             to: 18,
-            offsetHours: +4
+            offsetHours: +5
+        },
+        {
+            name: "Hisham",
+            from: 8,
+            to: 18,
+            offsetHours: +7
         }
     ]
 }
+recalculateWatches()
