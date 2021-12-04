@@ -1,46 +1,92 @@
-let page = document.getElementById("buttonDiv");
-let selectedClassName = "current";
-const presetButtonColors = ["#3aa757", "#e8453c", "#f9bb2d", "#4688f1"];
+function handleButtonClick(e) {
+  errorBox.innerHTML = ""
+  const name = cleanString(userForm.nameInput.value)
+  const timeDiff = userForm.countrySelect.value
+  const fromTime = userForm.fromTime.value
+  const toTime = userForm.toTime.value
 
-// Reacts to a button click by marking the selected button and saving
-// the selection
-function handleButtonClick(event) {
-  // Remove styling from the previously selected color
-  let current = event.target.parentElement.querySelector(
-    `.${selectedClassName}`
-  );
-  if (current && current !== event.target) {
-    current.classList.remove(selectedClassName);
+  if (validateInput(name, fromTime, toTime)) {
+    const fromTimeText = userForm.fromTime[userForm.fromTime.selectedIndex].innerHTML
+    const toTimeText = userForm.toTime[userForm.toTime.selectedIndex].innerHTML
+    storeData(name, timeDiff, fromTime, toTime)
+    tableBody.appendChild(createRow(name, timeDiff, fromTimeText, toTimeText))
   }
-
-  // Mark the button as selected
-  let color = event.target.dataset.color;
-  event.target.classList.add(selectedClassName);
-  chrome.storage.sync.set({ color });
 }
 
-// Add a button to the page for each supplied color
-function constructOptions(buttonColors) {
-  chrome.storage.sync.get("color", (data) => {
-    let currentColor = data.color;
-    // For each color we were provided…
-    for (let buttonColor of buttonColors) {
-      // …create a button with that color…
-      let button = document.createElement("button");
-      button.dataset.color = buttonColor;
-      button.style.backgroundColor = buttonColor;
+function storeData(name, timeDiff, fromTime, toTime) {
+  const value = {
+    name: name,
+    from: fromTime | 0,
+    to: toTime | 0,
+    offsetHours: timeDiff | 0
+  }
+  chrome.storage.sync.set({ [name]: value });
 
-      // …mark the currently selected color…
-      if (buttonColor === currentColor) {
-        button.classList.add(selectedClassName);
-      }
-
-      // …and register a listener for when that button is clicked
-      button.addEventListener("click", handleButtonClick);
-      page.appendChild(button);
-    }
-  });
 }
 
-// Initialize the page by constructing the color options
-constructOptions(presetButtonColors);
+function cleanString(str) {
+  return str.trim()
+}
+
+function validateInput(name, fromTime, toTime) {
+  nameError = errorIfFalse(name.length > 0, ["countrySelect"], "Name is missing")
+  fromTimeError = errorIfFalse(
+    fromTime.trim().length > 0 && !isNaN(fromTime), 
+    ["fromTime", "toTime"],
+    `From time must be set ${typeof fromTime}`
+    )
+  toTimeError = errorIfFalse(
+    toTime.trim().length > 0 && !isNaN(toTime), 
+    ["fromTime", "toTime"], 
+    `To time must must be set ${typeof toTime}`
+    )
+  timeError = errorIfFalse(
+    (fromTime|0) <= (toTime|0), 
+    ["fromTime", "toTime"], 
+    `From time ${fromTime} must be before To Time ${toTime}`
+    )
+  return nameError && timeError && fromTimeError && toTimeError
+}
+
+function errorIfFalse(check, ids, message) {
+  if (!check) {
+    addError(message)
+  }
+  return check
+}
+
+function addError(message) {
+  const div = document.createElement("div")
+  div.innerHTML = message
+  errorBox.appendChild(div)
+}
+
+function createRow(name, timeDiff, fromTime, toTime) {
+  row = document.createElement("tr")
+  row.appendChild(createColumn(name))
+  row.appendChild(createColumn(timeDiff))
+  row.appendChild(createColumn(fromTime))
+  row.appendChild(createColumn(toTime))
+  return row
+}
+
+function createColumn(value) {
+  td = document.createElement("td")
+  td.innerHTML = value
+  return td
+}
+
+clearDataBtn.addEventListener("click", () => {
+  chrome.storage.sync.clear(() => {
+    tableBody.innerHTML = ""
+  })
+})
+
+document.getElementById("add-btn").addEventListener("click", handleButtonClick);
+
+chrome.storage.sync.get(null, all => {
+  console.log(Object.values(all))
+  for (const schedule of Object.values(all)) {
+    tableBody.appendChild(createRow(schedule.name, schedule.offsetHours, schedule.from, schedule.to))
+  }
+});

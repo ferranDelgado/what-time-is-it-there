@@ -1,12 +1,14 @@
 function create() {
     document.getElementById("main-timeline").append(createRow())
 }
-const mainTimeLineElement = document.getElementById("main-timeline")
+//const schedules = getSchedules()
 
-mainTimeLineElement.append(createHeader())
-const schedules = getSchedules()
-for (const i in schedules) {
-    mainTimeLineElement.append(createRow(schedules[i]))
+function paintSchedules(schedules) {
+    const mainTimeLineElement = document.getElementById("main-timeline")
+    mainTimeLineElement.append(createHeader())
+    for (const i in schedules) {
+        mainTimeLineElement.append(createRow(schedules[i]))
+    }
 }
 
 function createHeader() {
@@ -72,6 +74,10 @@ function isInWorkingHours(hour, schedule) {
 }
 
 function getSchedules() {
+    chrome.storage.sync.get(null, all => {
+        console.log(Object.values(all))
+    });
+    
     return [
         {
             name: "Ferran",
@@ -99,4 +105,10 @@ function getSchedules() {
         }
     ]
 }
+
+chrome.storage.sync.get(null, all => {
+    console.log(Object.values(all))
+    paintSchedules(Object.values(all))
+    startWatches()
+});
 recalculateWatches()
