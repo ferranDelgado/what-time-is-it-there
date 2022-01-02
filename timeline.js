@@ -33,6 +33,7 @@ function createHeader() {
 }
 
 function createRow(schedule) {
+    schedule = SimpleDate.fromStorage(schedule)
     const timeline_row = document.createElement("div")
     timeline_row.classList.add("timeline-row")
     
@@ -46,14 +47,19 @@ function createRow(schedule) {
     hourElement.dataset.offset = schedule["offsetHours"]
     timeline_row.append(hourElement)
     
+    const currentUtcHour = new Date().getUTCHours() 
+    const currentHour = new Date().getHours()
+    const localTimeDiff = currentHour - currentUtcHour 
     for (let i = 0; i < 24; i++) {
         const unit = document.createElement("div")
-        if (isInWorkingHours(i, schedule)) {
+        const hourThere = SimpleDate.now(schedule.offsetHours).whatHourIsThereFromLocal(i)
+        unit.innerHTML = hourThere
+        if (schedule.from <= hourThere && hourThere <= schedule.to) {
             unit.classList.add("timeline-row-unit-working-hour")
         } else {
             unit.classList.add("timeline-row-unit-not-working-hour")
         }
-        if(i === (new Date().getHours())) {
+        if(i === currentHour) {
             unit.classList.add("timeline-row-unit-current-hour")
         }
         unit.classList.add("timeline-row-unit")
