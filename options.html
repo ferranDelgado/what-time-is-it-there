@@ -14,11 +14,11 @@
   <div>
     <p>Choose a different background color!</p>
   </div>
-  <form id="userForm">
-    <label for=name>
-      <input type="text" id="nameInput" name="name" />
+  <form id="userForm" style="display: none;">
+    <label for=name> Name
+      <input type="text" class="nameInput" name="name" />
     </label>
-    <select id="countrySelect">
+    <select class="countrySelect" name="country">
       <option value="-12">UTC -12</option>
       <option value="-11">UTC -11</option>
       <option value="-10">UTC -10</option>
@@ -46,7 +46,7 @@
       <option value="12">UTC +12</option>
     </select>
 
-    <select name="fromTime" id="fromTime">
+    <select class="fromTimeSelect" name="fromTime">
       <option value=""> - </option>
       <option value="0"> 12 PM </option>
       <option value="1"> 1 AM </option>
@@ -74,7 +74,7 @@
       <option value="23"> 11 PM </option>
     </select>
 
-    <select name="toTime" id="toTime">
+    <select class="toTimeSelect" name="toTime" >
       <option value=""> - </option>
       <option value="0"> 12 PM </option>
       <option value="1"> 1 AM </option>
@@ -101,36 +101,16 @@
       <option value="22"> 10 PM </option>
       <option value="23"> 11 PM </option>
     </select>
-    <button id="add-btn" type="button">
+    <button class="saveBtn" type="button" name="saveButton">
       Add friend time
     </button>
+    <button class="deleteBtn" type="button" name="deleteButton">
+      Delete
+    </button>
   </form>
+  <div id="allSchedules">
 
-  <table>
-    <thead>
-      <tr>
-        <th>
-          Name
-        </th>
-        <th>
-          UTC diff
-        </th>
-        <th>From</th>
-        <th>To</th>
-      </tr>
-    </thead>
-    <tbody id=tableBody>
-      <tr>
-        <td>Ferran</td>
-        <td>-5</td>
-        <td>-5</td>
-        <td>-5</td>
-      </tr>
-    </tbody>
-  </table>
-  <button id="clearDataBtn">
-    Clear all data
-  </button>
+  </div>
 </body>
 <script src="options.js"></script>
 

@@ -1,7 +1,6 @@
 function create() {
     document.getElementById("main-timeline").append(createRow())
 }
-//const schedules = getSchedules()
 
 function paintSchedules(schedules) {
     const mainTimeLineElement = document.getElementById("main-timeline")
@@ -79,42 +78,8 @@ function isInWorkingHours(hour, schedule) {
     return schedule["from"] <= withOffset && withOffset <= schedule["to"]
 }
 
-function getSchedules() {
-    chrome.storage.sync.get(null, all => {
-        console.log(Object.values(all))
-    });
-    
-    return [
-        {
-            name: "Ferran",
-            from: 8,
-            to: 18,
-            offsetHours: 0
-        },
-        {
-            name: "Reem",
-            from: 8,
-            to: 18,
-            offsetHours: +9
-        },
-        {
-            name: "UK",
-            from: 8,
-            to: 18,
-            offsetHours: +5
-        },
-        {
-            name: "Hisham",
-            from: 8,
-            to: 18,
-            offsetHours: +7
-        }
-    ]
-}
-
 chrome.storage.sync.get(null, all => {
     console.log(Object.values(all))
     paintSchedules(Object.values(all))
     startWatches()
-});
-recalculateWatches()
+})

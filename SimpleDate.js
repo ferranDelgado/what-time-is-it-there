@@ -1,6 +1,5 @@
 const SimpleDate = {
     fromStorage: (data) => {
-        console.log(data)
         object = {
             toStorage: () => {
                 

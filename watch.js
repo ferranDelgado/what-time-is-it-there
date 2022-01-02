@@ -10,10 +10,6 @@ function recalculateWatches() {
     Array.from(els).forEach((el) => {
         const date = new Date()
         const offsetHour = el.dataset.offset | 0
-        el.innerHTML = offsetHour + "-" + SimpleDate.now(offsetHour).prettyPrint() // twoDigits(date.getHours() + offsetHour) + ":" + twoDigits(date.getMinutes()) + ":" + twoDigits(date.getSeconds())
+        el.innerHTML = SimpleDate.now(offsetHour).prettyPrint()
     });
-}
-
-function twoDigits(value) {
-    return ("0" + value).slice(-2)
 }
