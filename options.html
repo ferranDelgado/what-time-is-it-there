@@ -2,13 +2,16 @@
 <html>
 
 <head>
-  <link rel="stylesheet" href="options.css"> 
+  <link rel="stylesheet" href="options.css">
 </head>
 
 <body>
   <div id="contentWrapper">
-    <div id="errorBox" style="background-color: red;"></div>
-    <form id="userForm" style="display: none;">
+    <h1>
+      Options
+    </h1>
+    <div id="errorBox"></div>
+    <form class="inputForm" id="userForm" style="display: none;">
       <label for=name> Name
         <input type="text" class="nameInput" name="name" />
       </label>
@@ -45,8 +48,6 @@
       <label>
         From
         <select class="fromTimeSelect" name="fromTime">
-          <option value=""> - </option>
-          <option value="0"> 12 PM </option>
           <option value="1"> 1 AM </option>
           <option value="2"> 2 AM </option>
           <option value="3"> 3 AM </option>
@@ -70,13 +71,12 @@
           <option value="21"> 9 PM </option>
           <option value="22"> 10 PM </option>
           <option value="23"> 11 PM </option>
+          <option value="0"> 12 PM </option>
         </select>
       </label>
       <label>
         To
         <select class="toTimeSelect" name="toTime">
-          <option value=""> - </option>
-          <option value="0"> 12 PM </option>
           <option value="1"> 1 AM </option>
           <option value="2"> 2 AM </option>
           <option value="3"> 3 AM </option>
@@ -100,6 +100,7 @@
           <option value="21"> 9 PM </option>
           <option value="22"> 10 PM </option>
           <option value="23"> 11 PM </option>
+          <option value="0"> 12 PM </option>
         </select>
       </label>
       <button class="saveBtn" type="button" name="saveButton">

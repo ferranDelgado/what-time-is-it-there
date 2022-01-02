@@ -14,6 +14,7 @@ function deleteSchedule(key) {
 
 function saveForm(form) {
   errorBox.innerHTML = ""
+  errorBox.style.display = "none"
   const key = form.dataset.key == undefined ? globalCounter + 1 : form.dataset.key
   const name = cleanString(form.name.value)
   const timeDiff = form.country.value
@@ -75,6 +76,7 @@ function errorIfFalse(check, ids, message) {
 function addError(message) {
   const div = document.createElement("div")
   div.innerHTML = message
+  errorBox.style.display = "block"
   errorBox.appendChild(div)
 }
 

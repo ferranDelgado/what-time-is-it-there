@@ -1,6 +1,50 @@
+body {
+    background: #f4f7f8;
+}
+
+#errorBox {
+    background-color: #e35d6a;
+    color: #2c0b0e;
+    padding: 10px;
+    display: none;
+}
+
+#errorBox div {
+    margin-bottom: 5px;
+}
+
 #contentWrapper {
+    min-width: 650px;
     width: 50%;
     margin: 0 auto;
+}
+
+.inputForm {
+    padding: 10px 20px;
+    margin: 0px auto;
+    padding: 5px;
+}
+
+.inputForm label {
+    margin-right: 10px;
+}
+
+.inputForm input,
+.inputForm select {
+    background: rgba(255, 255, 255, .1);
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    margin: 0;
+    outline: 0;
+    padding: 10px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    background-color: #e8eeef;
+    color: #8a97a0;
+    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
 }
 
 .deleteBtn {
@@ -12,6 +56,10 @@
 .deleteBtn:hover {
     background-color: #842029;
     color: #e35d6a;
+}
+
+button {
+    padding: 12px 20px;
 }
 
 .saveBtn {
@@ -27,6 +75,8 @@
 
 
 .createBtn {
+    padding-left: 55px;
+    padding-right: 56px;
     background-color: #ffda6a;
     color: #332701;
     border: none;
