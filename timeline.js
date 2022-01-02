@@ -52,7 +52,7 @@ function createRow(schedule) {
     for (let i = 0; i < 24; i++) {
         const unit = document.createElement("div")
         const hourThere = SimpleDate.now(schedule.offsetHours).whatHourIsThereFromLocal(i)
-        unit.innerHTML = hourThere
+        // unit.innerHTML = hourThere
         if (schedule.from <= hourThere && hourThere <= schedule.to) {
             unit.classList.add("timeline-row-unit-working-hour")
         } else {

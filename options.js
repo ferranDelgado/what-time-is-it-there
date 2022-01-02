@@ -108,7 +108,9 @@ function createForm(key, name, timeDiff, fromTime, toTime) {
     form.deleteButton.onclick = function () {
       deleteSchedule(key)
     }
+    form.saveButton.classList.add("saveBtn")
   } else {
+    form.saveButton.classList.add("createBtn")
     form.saveButton.innerHTML = "Create"
     form.deleteButton.style.display = "none"
   }

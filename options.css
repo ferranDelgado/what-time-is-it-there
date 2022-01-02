@@ -1,0 +1,38 @@
+#contentWrapper {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.deleteBtn {
+    background-color: #e35d6a;
+    color: #2c0b0e;
+    border: none;
+}
+
+.deleteBtn:hover {
+    background-color: #842029;
+    color: #e35d6a;
+}
+
+.saveBtn {
+    background-color: #479f76;
+    color: #051b11;
+    border: none;
+}
+
+.saveBtn:hover {
+    background-color: #0f5132;
+    color: #479f76;
+}
+
+
+.createBtn {
+    background-color: #ffda6a;
+    color: #332701;
+    border: none;
+}
+
+.createBtn:hover {
+    background-color: #997404;
+    color: #ffda6a;
+}
