@@ -30,7 +30,7 @@ const SimpleDate = {
                 }
                 const date = new Date()
                 const hour = object.whatHourIsThereFromLocal(date.getHours())
-                return `${twoDigits(hour)}:${twoDigits(date.getMinutes())}:${twoDigits(date.getSeconds())}`
+                return `${twoDigits(hour)}:${twoDigits(date.getMinutes())}` // :${twoDigits(date.getSeconds())}`
             }
         }
         return object

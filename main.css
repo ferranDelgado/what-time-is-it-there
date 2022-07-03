@@ -33,6 +33,7 @@ body {
 
 .timeline-row-unit-current-hour {
     border-color: grey;
+    border-style: groove;
 }
 
 .timeline-row-name {
@@ -47,4 +48,6 @@ body {
     flex-direction: column;
     justify-content: center;
     min-width: 10%;
+    text-align: right;
+    padding-right: 5px;
 }
