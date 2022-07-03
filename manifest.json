@@ -1,13 +1,10 @@
 {
   "name": "What time is it there?",
-  "description": "What time is it there is a google chrome extension meant to help those working in a remote worldwide environment where the teams aren't based in the same timezone. You can also use it to check up on schedules of friends and family abroad!",
-  "version": "1.0",
+  "description": "Easy timeline viewer for worldwide remote environment .",
+  "version": "0.0.0.1",
   "manifest_version": 3,
   "options_page": "options.html",
-  "background": {
-    "service_worker": "background.js"
-  },
-  "permissions": ["storage", "scripting"],
+  "permissions": ["storage"],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
